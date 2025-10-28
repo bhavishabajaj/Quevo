@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
@@ -8,6 +9,7 @@ const Signup = () => {
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
 
   const showForm = (type) => {
     setScreen(type);
@@ -39,14 +41,18 @@ const Signup = () => {
     e.preventDefault();
     console.log('Signup submitted:', { type: screen, ...formData });
     // Add your signup logic here
+    // navigate('/'); // Navigate to home after signup
   };
 
   return (
-    <div className="auth-container">
+    <div className="signup-wrapper">
+      <div className="auth-container">
       {/* Welcome Screen */}
       {screen === 'welcome' && (
         <div className="welcome-screen">
-          <div className="brand-logo">Quevo</div>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <div className="brand-logo">Quevo</div>
+          </Link>
           <div className="brand-subtitle">Professional Platform</div>
           <div className="auth-options">
             <button className="auth-btn" onClick={() => showForm('applicant')}>
@@ -119,6 +125,9 @@ const Signup = () => {
                 Sign up as Recruiter
               </a>
             </p>
+            <p className="alt-link">
+              Already have an account? <Link to="/login">Log in</Link>
+            </p>
           </div>
         </div>
       )}
@@ -183,9 +192,13 @@ const Signup = () => {
                 Sign up as Applicant
               </a>
             </p>
+            <p className="alt-link">
+              Already have an account? <Link to="/login">Log in</Link>
+            </p>
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

@@ -1,5 +1,20 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background: 
@@ -54,9 +69,9 @@ body::after {
 
 .login-container {
   display: flex;
-  width: 95%;
+  width: 90%;
   max-width: 1200px;
-  height: 720px;
+  height: auto;
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255,255,255,0.05);
@@ -98,7 +113,7 @@ body::after {
 
 .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; z-index: 2; position: relative; }
 .logo img { width: 38px; height: 38px; }
-.logo h2 { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #fff, #a78bfa, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo h2 { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #fff, #a78bfa, #ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
 h1 {
   font-size: 36px;
@@ -106,6 +121,7 @@ h1 {
   font-weight: 700;
   background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #ec4899 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -192,32 +208,151 @@ form input:focus {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   padding: 60px;
   position: relative;
   overflow: hidden;
 }
-.branding { text-align: right; color: #000; max-width: 360px; margin-bottom: 50px; }
+.branding { 
+  text-align: center; 
+  color: #000; 
+  max-width: 450px; 
+  margin-bottom: 30px; 
+  z-index: 2;
+}
 .branding h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 12px;
   background: linear-gradient(135deg, #111 0%, #7c3aed 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.branding .tagline { font-size: 17px; line-height: 1.7; color: #333; }
-.login-right img { position: absolute; bottom: 0; left: 40px; width: 380px; }
+.branding .tagline { 
+  font-size: 17px; 
+  line-height: 1.7; 
+  color: #333; 
+}
+.login-right img { 
+  max-width: 380px; 
+  width: 100%; 
+  z-index: 1;
+}
 
 @keyframes fadeIn { from {opacity:0; transform: scale(0.95);} to {opacity:1; transform:scale(1);} }
 @keyframes backgroundShift { 0% { transform: translate(-5px); } 100% { transform: translate(5px); } }
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
-  .login-container { flex-direction: column; height: auto; }
-  .login-left { padding: 30px; }
-  .login-right { align-items: center; text-align: center; padding: 40px; }
-  .branding { text-align: center; }
-  .login-right img { position: static; width: 60%; margin-top: 20px; }
-  body::after { display: none; }
+  .login-container { 
+    flex-direction: column; 
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .login-left { 
+    padding: 32px 24px;
+    order: 1;
+  }
+  
+  .login-right { 
+    padding: 32px 24px; 
+    order: 2;
+  }
+  
+  .logo h2 {
+    font-size: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  
+  .google-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  form input {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .login-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .branding { 
+    text-align: center; 
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .branding h2 { 
+    font-size: 26px; 
+  }
+  
+  .branding .tagline { 
+    font-size: 15px; 
+  }
+  
+  .login-right img { 
+    max-width: 280px;
+  }
+  
+  body::after { 
+    display: none; 
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 16px;
+  }
+
+  .login-container {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .login-left {
+    padding: 24px 20px;
+  }
+  
+  .login-right {
+    padding: 24px 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .branding h2 {
+    font-size: 22px;
+  }
+  
+  .branding .tagline {
+    font-size: 14px;
+  }
+  
+  .login-right img {
+    max-width: 240px;
+  }
+  
+  form label {
+    font-size: 13px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .signup {
+    font-size: 13px;
+  }
 }

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Login submitted:', { email, password, keepLoggedIn });
     // Add your login logic here
+    // navigate('/'); // Navigate to home after login
   };
 
   const handleGoogleLogin = () => {
@@ -18,11 +21,14 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-wrapper">
+      <div className="login-container">
       {/* Left Side */}
       <div className="login-left">
         <div className="logo">
-          <h2>Quevo</h2>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <h2>Quevo</h2>
+          </Link>
         </div>
         <h1>Welcome Back</h1>
 
@@ -70,7 +76,7 @@ const Login = () => {
         </form>
 
         <p className="signup">
-          Don't have an account? <a href="/signup">Sign up</a>
+          Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
       </div>
 
@@ -86,6 +92,7 @@ const Login = () => {
         </div>
         <img src="/login.png" alt="Work illustration" />
       </div>
+    </div>
     </div>
   );
 };

@@ -1,11 +1,30 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.signup-wrapper {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 255, 0.08), transparent 50%),
+    linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #050505 50%, #0a0a0a 75%, #000000 100%);
+  overflow: hidden;
+  position: relative;
+}
+
 .auth-container {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 90%;
   max-width: 1100px;
-  min-height: 720px;
   background: rgba(255,255,255,0.05);
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.15);
@@ -16,7 +35,6 @@
     0 0 0 1px rgba(167, 139, 250, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
-  margin: 20px auto;
 }
 
 .welcome-screen {
@@ -30,7 +48,6 @@
     linear-gradient(160deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 10, 0.95) 40%),
     radial-gradient(circle at 30% 70%, rgba(167, 139, 250, 0.04) 0%, transparent 50%);
   padding: 50px;
-  min-height: 720px;
 }
 
 .brand-logo {
@@ -75,7 +92,6 @@
   height: 100%;
   width: 100%;
   position: relative;
-  min-height: 720px;
 }
 .auth-form.active { display: flex; }
 
@@ -209,21 +225,215 @@
   text-decoration: underline;
 }
 
+@media (max-width: 1024px) {
+  .auth-container {
+    width: 95%;
+  }
+  
+  .left-panel, .right-panel {
+    padding: 36px 28px;
+  }
+  
+  .panel-title {
+    font-size: 1.75rem;
+  }
+  
+  .form-title {
+    font-size: 1.75rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .signup-wrapper {
+    padding: 16px;
+  }
+
+  .auth-container {
+    width: 100%;
+    margin: 0;
+  }
+
   .auth-form {
     flex-direction: column;
   }
-  .left-panel, .right-panel {
-    padding: 30px;
+  
+  .welcome-screen {
+    padding: 36px 24px;
+    min-height: auto;
   }
-  .panel-image {
-    width: 120px;
+  
+  .brand-logo {
+    font-size: 3rem;
+    margin-bottom: 16px;
   }
+  
+  .brand-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+  }
+  
   .auth-options {
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
   }
+  
   .auth-btn {
     width: 100%;
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+  }
+  
+  .left-panel, .right-panel {
+    padding: 32px 24px;
+  }
+  
+  .left-panel {
+    order: 2;
+    min-height: auto;
+  }
+  
+  .right-panel {
+    order: 1;
+  }
+  
+  .panel-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .panel-description {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+  
+  .panel-image {
+    position: static;
+    width: 160px;
+    margin-top: 20px;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-input {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .submit-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .back-btn-top {
+    top: 16px;
+    left: 16px;
+    padding: 8px 14px;
+    font-size: 16px;
+  }
+  
+  .alt-link {
+    font-size: 0.9rem;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-wrapper {
+    padding: 12px;
+  }
+
+  .welcome-screen {
+    padding: 28px 20px;
+  }
+  
+  .brand-logo {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .brand-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 28px;
+  }
+  
+  .auth-btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .left-panel, .right-panel {
+    padding: 24px 20px;
+  }
+  
+  .back-btn-top {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  .panel-title {
+    font-size: 1.25rem;
+  }
+  
+  .panel-description {
+    font-size: 0.9rem;
+  }
+  
+  .panel-image {
+    width: 140px;
+  }
+  
+  .form-title {
+    font-size: 1.35rem;
+  }
+  
+  .form-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .form-input {
+    padding: 11px;
+    font-size: 13px;
+  }
+  
+  .submit-btn {
+    padding: 11px;
+    font-size: 14px;
+  }
+  
+  .alt-link {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .brand-logo {
+    font-size: 2rem;
+  }
+  
+  .panel-title {
+    font-size: 1.1rem;
+  }
+  
+  .form-title {
+    font-size: 1.2rem;
+  }
+  
+  .panel-image {
+    width: 120px;
   }
 }

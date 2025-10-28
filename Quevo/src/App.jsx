@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
+import HowItWorks from './components/HowItWorks';
+import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import BackgroundAnimation from './components/BackgroundAnimation';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import './App.css';
 
 function App() {
@@ -21,15 +26,31 @@ function App() {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
-  return (
-    <div className="App">
-      <BackgroundAnimation />
+  // Home Page Component
+  const HomePage = () => (
+    <>
       <Header theme={theme} toggleTheme={toggleTheme} />
       <Hero />
       <Features />
+      <HowItWorks />
+      <Testimonials />
       <CTA />
       <Footer />
-    </div>
+    </>
+  );
+
+  return (
+    <Router>
+      <div className="App">
+        <BackgroundAnimation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

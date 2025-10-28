@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,12 +32,12 @@ const Header = ({ theme, toggleTheme }) => {
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <nav className="nav-container">
-        <a href="#" className="logo">Quevo.</a>
+        <Link to="/" className="logo">Quevo.</Link>
         
         {/* Desktop Navigation */}
         <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <li><a href="#" onClick={() => setMobileMenuOpen(false)}>For job seekers</a></li>
-          <li><a href="#" onClick={() => setMobileMenuOpen(false)}>For Companies</a></li>
+          <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For job seekers</Link></li>
+          <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For Companies</Link></li>
           <li className="mobile-only">
             <button 
               className="btn-outline mobile-theme-btn"
@@ -56,8 +58,8 @@ const Header = ({ theme, toggleTheme }) => {
           >
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>
-          <a href="#" className="btn-outline">Log in</a>
-          <a href="#" className="btn-primary">Sign up</a>
+          <Link to="/login" className="btn-outline">Log in</Link>
+          <Link to="/signup" className="btn-primary">Sign up</Link>
         </div>
 
         {/* Mobile Menu Hamburger */}
