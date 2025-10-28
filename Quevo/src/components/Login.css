@@ -52,7 +52,7 @@ body::after {
   z-index: -2;
 }
 
-.container {
+.login-container {
   display: flex;
   width: 95%;
   max-width: 1200px;
@@ -70,7 +70,7 @@ body::after {
   position: relative;
 }
 
-.container::before {
+.login-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -84,7 +84,6 @@ body::after {
   border-radius: 24px;
 }
 
-/* Left side */
 .login-left {
   flex: 1;
   background: 
@@ -97,7 +96,6 @@ body::after {
   position: relative;
 }
 
-/* Logo and Headings */
 .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; z-index: 2; position: relative; }
 .logo img { width: 38px; height: 38px; }
 .logo h2 { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #fff, #a78bfa, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -111,7 +109,6 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Buttons */
 .google-btn {
   background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
   border: 1px solid rgba(255,255,255,0.3);
@@ -129,8 +126,11 @@ h1 {
   transition: all 0.3s ease;
 }
 .google-btn img { width: 20px; }
+.google-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(167, 139, 250, 0.3);
+}
 
-/* Divider */
 .divider { text-align: center; margin-bottom: 22px; font-size: 14px; color: #aaa; position: relative; }
 .divider::before, .divider::after {
   content: "";
@@ -143,7 +143,6 @@ h1 {
 .divider::before { left: 0; }
 .divider::after { right: 0; }
 
-/* Form */
 form label { display: block; font-weight: 600; margin-top: 16px; margin-bottom: 6px; color: #ddd; font-size: 14px; }
 form input {
   width: 100%;
@@ -162,9 +161,10 @@ form input:focus {
   box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
 }
 
-/* Options and Buttons */
 .form-options { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; color: #bbb; }
 .form-options a { color: #a78bfa; font-weight: 500; text-decoration: none; }
+.form-options a:hover { text-decoration: underline; }
+
 .login-btn {
   margin-top: 24px;
   width: 100%;
@@ -177,10 +177,15 @@ form input:focus {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.signup { margin-top: 20px; font-size: 14px; color: #aaa; }
-.signup a { color: #a78bfa; font-weight: 600; text-decoration: none; }
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.5);
+}
 
-/* Right Side */
+.signup { margin-top: 20px; font-size: 14px; color: #aaa; text-align: center; }
+.signup a { color: #a78bfa; font-weight: 600; text-decoration: none; }
+.signup a:hover { text-decoration: underline; }
+
 .login-right {
   flex: 1;
   background: linear-gradient(140deg, #fafafa 0%, #f3f4f6 50%, #e5e7eb 100%);
@@ -204,14 +209,15 @@ form input:focus {
 .branding .tagline { font-size: 17px; line-height: 1.7; color: #333; }
 .login-right img { position: absolute; bottom: 0; left: 40px; width: 380px; }
 
-/* Animations */
 @keyframes fadeIn { from {opacity:0; transform: scale(0.95);} to {opacity:1; transform:scale(1);} }
 @keyframes backgroundShift { 0% { transform: translate(-5px); } 100% { transform: translate(5px); } }
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
-  .container { flex-direction: column; height: auto; }
-  .login-right { align-items: center; text-align: center; }
+  .login-container { flex-direction: column; height: auto; }
+  .login-left { padding: 30px; }
+  .login-right { align-items: center; text-align: center; padding: 40px; }
+  .branding { text-align: center; }
   .login-right img { position: static; width: 60%; margin-top: 20px; }
   body::after { display: none; }
 }
