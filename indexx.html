@@ -1,0 +1,68 @@
+<!-- sign up -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quevo - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylee.css">
+</head>
+<body>
+  <div class="auth-container">
+    <!-- Welcome -->
+    <div class="welcome-screen">
+      <div class="brand-logo">Quevo</div>
+      <div class="brand-subtitle">Professional Platform</div>
+      <div class="auth-options">
+        <button class="auth-btn" onclick="showForm('applicant')">Applicant</button>
+        <button class="auth-btn" onclick="showForm('recruiter')">Recruiter</button>
+      </div>
+    </div>
+
+    <!-- Applicant Form -->
+    <div class="auth-form applicant-form">
+      <button class="back-btn-top" onclick="goBack()">←</button>
+      <div class="left-panel">
+        <h2 class="panel-title">WELCOME APPLICANT</h2>
+        <p class="panel-description">Explore opportunities and showcase your talents. Your journey to the perfect role starts here.</p>
+        <img src="login.png" alt="Illustration" class="panel-image">
+      </div>
+      <div class="right-panel">
+        <h2 class="form-title">Applicant Signup</h2>
+        <p class="form-subtitle">Create your account</p>
+        <form>
+          <div class="form-group"><input type="text" class="form-input" placeholder="Full Name" required></div>
+          <div class="form-group"><input type="email" class="form-input" placeholder="Email Address" required></div>
+          <div class="form-group"><input type="password" class="form-input" placeholder="Password" required></div>
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+        <p class="alt-link">Want to hire? <a href="#" onclick="switchToRecruiter()">Sign up as Recruiter</a></p>
+      </div>
+    </div>
+
+    <!-- Recruiter Form -->
+    <div class="auth-form recruiter-form">
+      <button class="back-btn-top" onclick="goBack()">←</button>
+      <div class="left-panel">
+        <h2 class="panel-title">RECRUITER PORTAL</h2>
+        <p class="panel-description">Find exceptional talent and build amazing teams. Connect with the best candidates in your field.</p>
+        <img src="login.png" alt="Illustration" class="panel-image">
+      </div>
+      <div class="right-panel">
+        <h2 class="form-title">Recruiter Signup</h2>
+        <p class="form-subtitle">Create your recruiter account</p>
+        <form>
+          <div class="form-group"><input type="text" class="form-input" placeholder="Company Name" required></div>
+          <div class="form-group"><input type="email" class="form-input" placeholder="Business Email" required></div>
+          <div class="form-group"><input type="password" class="form-input" placeholder="Password" required></div>
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+        <p class="alt-link">Looking for jobs? <a href="#" onclick="switchToApplicant()">Sign up as Applicant</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="scriptt.js"></script>
+</body>
+</html>

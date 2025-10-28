@@ -1,0 +1,217 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 255, 0.08), transparent 50%),
+    linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #050505 50%, #0a0a0a 75%, #000000 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(167, 139, 250, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.02) 0%, transparent 70%);
+  animation: backgroundShift 20s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    conic-gradient(from 0deg at 50% 50%, 
+      transparent 0deg, 
+      rgba(167, 139, 250, 0.01) 60deg, 
+      transparent 120deg,
+      rgba(124, 58, 237, 0.008) 180deg,
+      transparent 240deg,
+      rgba(236, 72, 153, 0.008) 300deg,
+      transparent 360deg
+    );
+  animation: rotate 60s linear infinite;
+  z-index: -2;
+}
+
+.container {
+  display: flex;
+  width: 95%;
+  max-width: 1200px;
+  height: 720px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 
+    0 25px 60px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(167, 139, 250, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, rgba(167, 139, 250, 0.02) 0%, transparent 50%),
+    linear-gradient(45deg, rgba(124, 58, 237, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+/* Left side */
+.login-left {
+  flex: 1;
+  background: 
+    linear-gradient(160deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 10, 0.95) 40%, rgba(15, 15, 20, 0.9) 100%),
+    radial-gradient(circle at 30% 70%, rgba(167, 139, 250, 0.04) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  position: relative;
+}
+
+/* Logo and Headings */
+.logo { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; z-index: 2; position: relative; }
+.logo img { width: 38px; height: 38px; }
+.logo h2 { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #fff, #a78bfa, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.google-btn {
+  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 14px;
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 22px;
+  color: #000;
+  transition: all 0.3s ease;
+}
+.google-btn img { width: 20px; }
+
+/* Divider */
+.divider { text-align: center; margin-bottom: 22px; font-size: 14px; color: #aaa; position: relative; }
+.divider::before, .divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.3), transparent);
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* Form */
+form label { display: block; font-weight: 600; margin-top: 16px; margin-bottom: 6px; color: #ddd; font-size: 14px; }
+form input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 12px;
+  font-size: 15px;
+  background: rgba(0,0,0,0.2);
+  color: #fff;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+form input:focus {
+  border-color: #a78bfa;
+  outline: none;
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+}
+
+/* Options and Buttons */
+.form-options { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; color: #bbb; }
+.form-options a { color: #a78bfa; font-weight: 500; text-decoration: none; }
+.login-btn {
+  margin-top: 24px;
+  width: 100%;
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #ec4899 100%);
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.signup { margin-top: 20px; font-size: 14px; color: #aaa; }
+.signup a { color: #a78bfa; font-weight: 600; text-decoration: none; }
+
+/* Right Side */
+.login-right {
+  flex: 1;
+  background: linear-gradient(140deg, #fafafa 0%, #f3f4f6 50%, #e5e7eb 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.branding { text-align: right; color: #000; max-width: 360px; margin-bottom: 50px; }
+.branding h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #111 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.branding .tagline { font-size: 17px; line-height: 1.7; color: #333; }
+.login-right img { position: absolute; bottom: 0; left: 40px; width: 380px; }
+
+/* Animations */
+@keyframes fadeIn { from {opacity:0; transform: scale(0.95);} to {opacity:1; transform:scale(1);} }
+@keyframes backgroundShift { 0% { transform: translate(-5px); } 100% { transform: translate(5px); } }
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+  .container { flex-direction: column; height: auto; }
+  .login-right { align-items: center; text-align: center; }
+  .login-right img { position: static; width: 60%; margin-top: 20px; }
+  body::after { display: none; }
+}
