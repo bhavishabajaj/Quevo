@@ -7,7 +7,6 @@ import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
-import BackgroundAnimation from './components/BackgroundAnimation';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import './App.css';
@@ -42,7 +41,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <BackgroundAnimation />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
