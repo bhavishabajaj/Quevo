@@ -15,7 +15,7 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: #e2e8f0;
-    background: #0a0a14;
+    background: url('https://i.pinimg.com/1200x/fa/c1/97/fac19783db261d2f79dad2f98dc6f458.jpg') center center / cover no-repeat fixed;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -39,13 +39,21 @@ body {
     display: block;
     position: relative;
     z-index: 1;
-    background: linear-gradient(135deg, #0a0a14 0%, #1a0b2e 50%, #0a0a14 100%);
+    background: transparent;
     overflow-x: hidden;
 }
 
 /* Dark overlay for better content readability */
 body::before {
-    display: none;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.85);
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Animated background */
@@ -89,6 +97,7 @@ body::before {
     justify-content: center;
     background: transparent;
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero-section::before {
@@ -117,16 +126,18 @@ body::before {
     position: sticky;
     top: 0;
     width: 100%;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(30px);
+    border-bottom: 1px solid rgba(147, 51, 234, 0.2);
     z-index: 1000;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .header.scrolled {
-    background: var(--header-bg, rgba(15, 23, 42, 0.95));
-    border-bottom: 1px solid rgba(147, 51, 234, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -1516,12 +1527,16 @@ body::before {
 }
 
 .theme-light body {
-    background: #f8fafc;
+    background: url('https://i.pinimg.com/1200x/fa/c1/97/fac19783db261d2f79dad2f98dc6f458.jpg') center center / cover no-repeat fixed;
     color: #1e293b;
 }
 
+.theme-light body::before {
+    background: rgba(248, 250, 252, 0.92);
+}
+
 .theme-light .App {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+    background: transparent;
 }
 
 .theme-light .bg-animation {

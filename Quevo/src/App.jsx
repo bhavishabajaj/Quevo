@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Blog from './components/Blog';
+import BlogPost from './components/BlogPost';
 import './App.css';
 
 function App() {
@@ -48,12 +49,22 @@ function App() {
     </>
   );
 
+  // Blog Post Page Component
+  const BlogPostPage = () => (
+    <>
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <BlogPost />
+      <Footer />
+    </>
+  );
+
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Navigate to="/" replace />} />

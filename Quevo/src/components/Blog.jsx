@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './BlogStyles.css';
 
 const blogArticles = [
@@ -152,7 +153,8 @@ const Blog = () => {
   const regularArticles = searchedArticles.filter(article => !article.featured);
 
   const ArticleCard = ({ article, index }) => (
-    <div 
+    <Link 
+      to={`/blog/${article.id}`}
       className={`article-card ${visibleCards.includes(index) ? 'visible' : ''}`}
       ref={el => cardsRef.current[index] = el}
     >
@@ -182,7 +184,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 
   return (
