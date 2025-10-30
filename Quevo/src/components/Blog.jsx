@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './BlogStyles.css';
 
 const blogArticles = [
@@ -107,26 +107,79 @@ const categories = ['All', 'Career Advice', 'Remote Work', 'Compensation', 'Tech
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [visibleCards, setVisibleCards] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const cardsRef = useRef([]);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = cardsRef.current.indexOf(entry.target);
+            if (index !== -1 && !visibleCards.includes(index)) {
+              setTimeout(() => {
+                setVisibleCards(prev => [...prev, index]);
+              }, index * 100);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardsRef.current.forEach(card => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, [selectedCategory]);
 
   const filteredArticles = selectedCategory === 'All'
     ? blogArticles
     : blogArticles.filter(article => article.category === selectedCategory);
 
-  const featuredArticles = blogArticles.filter(article => article.featured);
-  const regularArticles = filteredArticles.filter(article => !article.featured);
+  const searchedArticles = searchQuery 
+    ? filteredArticles.filter(article => 
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.category.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : filteredArticles;
 
-  const ArticleCard = ({ article }) => (
-    <div className="article-card">
+  const featuredArticles = blogArticles.filter(article => article.featured);
+  const regularArticles = searchedArticles.filter(article => !article.featured);
+
+  const ArticleCard = ({ article, index }) => (
+    <div 
+      className={`article-card ${visibleCards.includes(index) ? 'visible' : ''}`}
+      ref={el => cardsRef.current[index] = el}
+    >
       <div className="article-image">
-        <img src={article.image} alt={article.title} />
+        <img src={article.image} alt={article.title} loading="lazy" />
         <span className="article-category">{article.category}</span>
+        <div className="article-overlay">
+          <button className="read-more-btn">Read Article →</button>
+        </div>
       </div>
       <div className="article-content">
+        <div className="article-tags">
+          <span className="tag">#{article.category.replace(' ', '')}</span>
+        </div>
         <h3>{article.title}</h3>
         <p>{article.excerpt}</p>
         <div className="article-meta">
-          <div>{article.author} • {article.date}</div>
-          <span>{article.readTime}</span>
+          <div className="author-info">
+            <div className="author-avatar">{article.author.charAt(0)}</div>
+            <div>
+              <div className="author-name">{article.author}</div>
+              <div className="article-date">{article.date} • {article.readTime}</div>
+            </div>
+          </div>
+          <div className="article-stats">
+            <span className="stat-item">👁 {Math.floor(Math.random() * 5 + 1)}k</span>
+          </div>
         </div>
       </div>
     </div>
@@ -138,33 +191,91 @@ const Blog = () => {
       <div className="blog-hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h1>Quevo Blog</h1>
-          <p>Insights, tips, and stories to help you navigate your career journey and land your dream job</p>
+          <div className="blog-badge">
+            <span className="badge-icon">📚</span>
+            <span>Knowledge Hub</span>
+          </div>
+          <h1>Quevo Career Insights</h1>
+          <p>Expert advice, industry trends, and actionable tips to accelerate your career growth</p>
+          
+          {/* Search Bar */}
+          <div className="hero-search">
+            <div className="search-container">
+              <span className="search-icon">🔍</span>
+              <input 
+                type="text" 
+                placeholder="Search articles, topics, or keywords..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button className="clear-search" onClick={() => setSearchQuery('')}>✕</button>
+              )}
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="blog-stats">
+            <div className="stat-item">
+              <span className="stat-number">100+</span>
+              <span className="stat-label">Articles</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">50k+</span>
+              <span className="stat-label">Readers</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">Weekly</span>
+              <span className="stat-label">Updates</span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Category Filter */}
       <div className="category-section">
-        <div className="category-buttons">
-          {categories.map(category => (
-            <button
-              key={category}
-              className={selectedCategory === category ? 'active' : ''}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="category-container">
+          <h3>Browse by Category</h3>
+          <div className="category-buttons">
+            {categories.map(category => (
+              <button
+                key={category}
+                className={selectedCategory === category ? 'active' : ''}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setVisibleCards([]);
+                }}
+              >
+                <span className="category-icon">
+                  {category === 'All' && '📋'}
+                  {category === 'Career Advice' && '💼'}
+                  {category === 'Remote Work' && '🏠'}
+                  {category === 'Compensation' && '💰'}
+                  {category === 'Tech Trends' && '🚀'}
+                  {category === 'Startup Life' && '⚡'}
+                </span>
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Featured Articles */}
-      {selectedCategory === 'All' && (
-        <div className="article-section">
-          <h2>Featured Articles</h2>
-          <div className="article-grid">
-            {featuredArticles.map(article => (
-              <ArticleCard key={article.id} article={article} />
+      {selectedCategory === 'All' && !searchQuery && (
+        <div className="article-section featured-section">
+          <div className="section-header">
+            <div className="section-title">
+              <span className="title-icon">⭐</span>
+              <h2>Featured Reads</h2>
+            </div>
+            <p className="section-subtitle">Hand-picked articles by our editors</p>
+          </div>
+          <div className="article-grid featured-grid">
+            {featuredArticles.map((article, index) => (
+              <ArticleCard key={article.id} article={article} index={index} />
             ))}
           </div>
         </div>
@@ -172,24 +283,82 @@ const Blog = () => {
 
       {/* All Articles */}
       <div className="article-section">
-        <h2>{selectedCategory === 'All' ? 'Latest Articles' : `${selectedCategory} Articles`}</h2>
-        <div className="article-grid">
-          {(selectedCategory === 'All' ? regularArticles : filteredArticles).map(article => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
+        <div className="section-header">
+          <div className="section-title">
+            <span className="title-icon">📰</span>
+            <h2>
+              {searchQuery 
+                ? `Search Results (${searchedArticles.length})` 
+                : selectedCategory === 'All' 
+                  ? 'Latest Articles' 
+                  : `${selectedCategory}`}
+            </h2>
+          </div>
+          {!searchQuery && (
+            <p className="section-subtitle">
+              {selectedCategory === 'All' 
+                ? 'Stay up to date with the latest career insights' 
+                : `All articles about ${selectedCategory.toLowerCase()}`}
+            </p>
+          )}
         </div>
+        {searchedArticles.length === 0 ? (
+          <div className="no-results">
+            <div className="no-results-icon">🔍</div>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search or browse all categories</p>
+            <button onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }}>
+              View All Articles
+            </button>
+          </div>
+        ) : (
+          <div className="article-grid">
+            {(selectedCategory === 'All' && !searchQuery ? regularArticles : searchedArticles).map((article, index) => (
+              <ArticleCard key={article.id} article={article} index={index} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Newsletter Section */}
       <div className="newsletter-section">
         <div className="newsletter-box">
-          <h2>Stay Updated with Career Insights</h2>
-          <p>Get the latest articles, job tips, and startup news delivered to your inbox every week.</p>
-          <div className="newsletter-form">
-            <input type="email" placeholder="Enter your email" />
-            <button>Subscribe</button>
+          <div className="newsletter-icon">✉️</div>
+          <h2>Never Miss an Insight</h2>
+          <p>Join 50,000+ professionals getting career tips, industry insights, and job opportunities delivered weekly.</p>
+          
+          <div className="newsletter-features">
+            <div className="feature-item">
+              <span className="check-icon">✓</span>
+              <span>Weekly career tips</span>
+            </div>
+            <div className="feature-item">
+              <span className="check-icon">✓</span>
+              <span>Exclusive job opportunities</span>
+            </div>
+            <div className="feature-item">
+              <span className="check-icon">✓</span>
+              <span>Industry trends & insights</span>
+            </div>
           </div>
+
+          <div className="newsletter-form">
+            <input type="email" placeholder="Enter your email address" />
+            <button>
+              <span>Subscribe Now</span>
+              <span className="arrow">→</span>
+            </button>
+          </div>
+          
+          <p className="newsletter-note">🔒 No spam. Unsubscribe anytime.</p>
         </div>
+      </div>
+
+      {/* Floating Elements */}
+      <div className="floating-elements">
+        <div className="floating-circle circle-1"></div>
+        <div className="floating-circle circle-2"></div>
+        <div className="floating-circle circle-3"></div>
       </div>
     </div>
   );
