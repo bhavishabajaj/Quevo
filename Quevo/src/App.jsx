@@ -9,6 +9,7 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Blog from './components/Blog';
 import './App.css';
 
 function App() {
@@ -38,11 +39,21 @@ function App() {
     </>
   );
 
+  // Blog Page Component
+  const BlogPage = () => (
+    <>
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Blog />
+      <Footer />
+    </>
+  );
+
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Navigate to="/" replace />} />

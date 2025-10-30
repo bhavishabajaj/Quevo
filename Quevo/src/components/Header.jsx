@@ -38,6 +38,7 @@ const Header = ({ theme, toggleTheme }) => {
         <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For job seekers</Link></li>
           <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For Companies</Link></li>
+          <li><Link to="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link></li>
           <li className="mobile-only">
             <button 
               className="btn-outline mobile-theme-btn"
