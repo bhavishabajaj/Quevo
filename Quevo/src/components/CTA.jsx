@@ -5,7 +5,7 @@ const CTA = () => {
     <section className="cta">
       <div className="cta-container">
         <div className="cta-content">
-          <div className="cta-badge">🎯 Ready to start?</div>
+          <div className="cta-badge">▶ Ready to start?</div>
           <h2>Ready to Transform Your Career?</h2>
           <p>Join thousands of job seekers and companies already using Quevo to find their perfect match.</p>
           

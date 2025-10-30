@@ -7,14 +7,14 @@ const Features = () => {
 
   const features = [
     {
-      icon: '🎯',
+      icon: '👤',
       title: 'For Job Seekers',
       description: 'Create your profile, showcase your skills, and let opportunities come to you. Build your professional brand with our intuitive profile builder.',
       stats: '5000+ profiles',
       benefits: ['AI-powered matching', 'Profile visibility boost', '24/7 support']
     },
     {
-      icon: '🚀',
+      icon: '🏢',
       title: 'For Companies',
       description: 'Post jobs, browse talent profiles, and connect with your next great hire. Access a curated pool of verified professionals.',
       stats: '500+ companies',
@@ -28,21 +28,21 @@ const Features = () => {
       benefits: ['Instant notifications', 'Quick apply process', 'Mobile-first design']
     },
     {
-      icon: '🔒',
+      icon: '�',
       title: 'Secure & Private',
       description: 'Your data is encrypted and protected. Control who sees your profile and maintain complete privacy throughout your job search.',
       stats: '100% secure',
       benefits: ['End-to-end encryption', 'GDPR compliant', 'Privacy controls']
     },
     {
-      icon: '📊',
+      icon: '�',
       title: 'Analytics & Insights',
       description: 'Track your job search progress with detailed analytics. Get insights on profile views, application status, and market trends.',
       stats: 'Real-time data',
       benefits: ['Performance metrics', 'Market insights', 'Competitor analysis']
     },
     {
-      icon: '🤝',
+      icon: '💼',
       title: 'Community Support',
       description: 'Join a thriving community of professionals. Network, share knowledge, and grow together with industry experts.',
       stats: '10k+ members',
@@ -99,7 +99,7 @@ const Features = () => {
     <section className="features" ref={featuresRef}>
       <div className="features-container">
         <div className="section-header">
-          <span className="section-badge">✨ Features</span>
+          <span className="section-badge">⭐ Features</span>
           <h2 className="scroll-reveal">Why Choose Quevo?</h2>
           <p className="section-subtitle">Everything you need to succeed in your hiring journey or job search</p>
         </div>

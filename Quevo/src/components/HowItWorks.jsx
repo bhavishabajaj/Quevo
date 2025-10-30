@@ -16,7 +16,7 @@ const HowItWorks = () => {
       number: '02',
       title: 'Get Discovered',
       description: 'Our AI-powered matching algorithm connects you with relevant opportunities based on your profile and preferences.',
-      icon: '🔍',
+      icon: '�',
       color: '#a855f7'
     },
     {
@@ -30,7 +30,7 @@ const HowItWorks = () => {
       number: '04',
       title: 'Land Your Dream Job',
       description: 'Accept the perfect offer and start your new journey. Track everything in your dashboard from start to finish.',
-      icon: '🎉',
+      icon: '✓',
       color: '#d8b4fe'
     }
   ];

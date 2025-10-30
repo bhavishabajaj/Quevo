@@ -55,9 +55,9 @@ const Hero = () => {
         <div className="hero-container">
           {/* Premium Badge */}
           <div className="hero-badge-premium fade-in-up">
-            <span className="sparkle">✨</span>
+            <span className="sparkle">⭐</span>
             <span className="badge-text">Join 500+ Leading Companies</span>
-            <span className="sparkle">✨</span>
+            <span className="sparkle">⭐</span>
           </div>
           
           {/* Main Heading with Typing Effect */}
@@ -77,7 +77,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div className="hero-buttons fade-in-up delay-2">
             <a href="/signup" className="btn-hero primary">
-              <span className="btn-icon">🚀</span>
+              <span className="btn-icon">▶</span>
               <span>Start Your Journey</span>
               <span className="btn-arrow">→</span>
             </a>
@@ -90,7 +90,7 @@ const Hero = () => {
           {/* Animated Statistics with Better Design */}
           <div className="hero-stats-premium fade-in-up delay-3">
             <div className="stat-card">
-              <div className="stat-icon">💼</div>
+              <div className="stat-icon">�</div>
               <div className="stat-number-large">{stats.jobs.toLocaleString()}+</div>
               <div className="stat-label-large">Active Jobs</div>
               <div className="stat-trend">↑ 23% this month</div>
@@ -104,7 +104,7 @@ const Hero = () => {
             </div>
             
             <div className="stat-card">
-              <div className="stat-icon">🎯</div>
+              <div className="stat-icon">✓</div>
               <div className="stat-number-large">{stats.hires.toLocaleString()}+</div>
               <div className="stat-label-large">Successful Hires</div>
               <div className="stat-trend">↑ 95% match rate</div>

@@ -3,6 +3,8 @@
 .blog-page {
   min-height: 100vh;
   padding-top: 72px; /* Account for fixed header */
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Hero Section */
