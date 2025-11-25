@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api';
 import './Signup.css';
 
 const Signup = () => {
@@ -9,6 +10,8 @@ const Signup = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const showForm = (type) => {
@@ -37,11 +40,33 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup submitted:', { type: screen, ...formData });
-    // Add your signup logic here
-    // navigate('/'); // Navigate to home after signup
+    setError('');
+    setLoading(true);
+
+    try {
+      // Register user with API
+      const data = await authAPI.register({
+        ...formData,
+        role: screen // 'applicant' or 'recruiter'
+      });
+
+      // Save token and user data
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Redirect based on role
+      if (screen === 'applicant') {
+        navigate('/applicant-dashboard');
+      } else if (screen === 'recruiter') {
+        navigate('/recruiter-dashboard');
+      }
+    } catch (err) {
+      setError(err.message || 'Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -81,6 +106,7 @@ const Signup = () => {
           <div className="right-panel">
             <h2 className="form-title">Applicant Signup</h2>
             <p className="form-subtitle">Create your account</p>
+            {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <input
@@ -115,8 +141,8 @@ const Signup = () => {
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn">
-                Sign Up
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? 'Signing up...' : 'Sign Up'}
               </button>
             </form>
             <p className="alt-link">
@@ -148,6 +174,7 @@ const Signup = () => {
           <div className="right-panel">
             <h2 className="form-title">Recruiter Signup</h2>
             <p className="form-subtitle">Create your recruiter account</p>
+            {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <input
@@ -182,8 +209,8 @@ const Signup = () => {
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn">
-                Sign Up
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? 'Signing up...' : 'Sign Up'}
               </button>
             </form>
             <p className="alt-link">

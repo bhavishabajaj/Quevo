@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Header = ({ theme, toggleTheme }) => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -39,26 +39,9 @@ const Header = ({ theme, toggleTheme }) => {
           <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For job seekers</Link></li>
           <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>For Companies</Link></li>
           <li><Link to="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link></li>
-          <li className="mobile-only">
-            <button 
-              className="btn-outline mobile-theme-btn"
-              onClick={() => { toggleTheme(); setMobileMenuOpen(false); }}
-            >
-              {theme === 'dark' ? '☀️' : '🌙'} {theme === 'dark' ? 'Light' : 'Dark'} Mode
-            </button>
-          </li>
         </ul>
 
         <div className="auth-buttons">
-          <button 
-            id="theme-toggle" 
-            aria-label="Toggle theme" 
-            aria-pressed={theme === 'light'}
-            className="btn-outline theme-toggle-btn"
-            onClick={toggleTheme}
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
           <Link to="/login" className="btn-outline">Log in</Link>
           <Link to="/signup" className="btn-primary">Sign up</Link>
         </div>

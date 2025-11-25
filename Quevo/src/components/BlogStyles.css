@@ -381,13 +381,14 @@
 .article-section {
   max-width: 1200px;
   margin: 4rem auto;
-  padding: 0 2rem;
+  padding: 0 2rem 6rem;
   position: relative;
   z-index: 1;
 }
 
 .featured-section {
   margin-top: 3rem;
+  margin-bottom: 4rem;
   padding: 3rem 2rem;
   background: rgba(15, 23, 42, 0.7);
   border-radius: 24px;

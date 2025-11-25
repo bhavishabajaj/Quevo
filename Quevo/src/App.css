@@ -544,7 +544,6 @@ body::before {
     font-size: 48px;
     margin-bottom: 16px;
     filter: drop-shadow(0 0 20px rgba(147, 51, 234, 0.5));
-    animation: float 3s ease-in-out infinite;
 }
 
 .stat-number-large {

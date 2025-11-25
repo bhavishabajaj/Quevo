@@ -34,6 +34,9 @@
   max-width: 900px;
   margin: 0 auto;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .back-link {
@@ -43,9 +46,10 @@
   color: #a855f7;
   text-decoration: none;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   transition: all 0.3s ease;
   font-size: 16px;
+  align-self: flex-start;
 }
 
 .back-link:hover {
@@ -69,6 +73,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+  align-self: flex-start;
 }
 
 .post-title {
@@ -83,18 +88,23 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: manual;
+  align-self: flex-start;
+  width: 100%;
 }
 
 .post-meta {
   display: flex;
   align-items: center;
   gap: 2rem;
+  width: 100%;
+  align-self: flex-start;
 }
 
 .author-section {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .author-avatar {
@@ -132,7 +142,7 @@
 /* Featured Image */
 .post-image-container {
   max-width: 1200px;
-  margin: -80px auto 4rem;
+  margin: 3rem auto 4rem;
   padding: 0 2rem;
   position: relative;
   z-index: 10;

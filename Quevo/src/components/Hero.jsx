@@ -23,31 +23,8 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Stats counter animation
-  const [stats, setStats] = useState({ jobs: 0, companies: 0, hires: 0 });
-  const targetStats = { jobs: 10000, companies: 500, hires: 5000 };
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const interval = duration / steps;
-    let step = 0;
-
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      
-      setStats({
-        jobs: Math.floor(targetStats.jobs * progress),
-        companies: Math.floor(targetStats.companies * progress),
-        hires: Math.floor(targetStats.hires * progress)
-      });
-
-      if (step >= steps) clearInterval(timer);
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, []);
+  // Static stats without animation
+  const stats = { jobs: 10000, companies: 500, hires: 5000 };
 
   return (
     <section className="hero-section">

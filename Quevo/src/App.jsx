@@ -11,26 +11,16 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
+import ApplicantDashboard from './components/ApplicantDashboard';
+import RecruiterDashboard from './components/RecruiterDashboard';
 import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('site-theme') || 'dark';
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('theme-light', theme === 'light');
-    localStorage.setItem('site-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
 
   // Home Page Component
   const HomePage = () => (
     <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header />
       <Hero />
       <Features />
       <HowItWorks />
@@ -43,7 +33,7 @@ function App() {
   // Blog Page Component
   const BlogPage = () => (
     <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header />
       <Blog />
       <Footer />
     </>
@@ -52,7 +42,7 @@ function App() {
   // Blog Post Page Component
   const BlogPostPage = () => (
     <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header />
       <BlogPost />
       <Footer />
     </>
@@ -67,6 +57,8 @@ function App() {
           <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/applicant-dashboard" element={<ApplicantDashboard />} />
+          <Route path="/recruiter-dashboard" element={<RecruiterDashboard />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1763893792064",
+    "name": "anirudh",
+    "email": "anirudh0979.becse24@chitkara.edu.in",
+    "password": "$2a$10$EbdwJTEMifXYFSr87NHpxeplmqq3lV.YMMpI48woz7M1s6JNEctQq",
+    "role": "applicant",
+    "skills": [],
+    "appliedJobs": [],
+    "postedJobs": [],
+    "profileViews": 0,
+    "createdAt": "2025-11-23T10:29:52.064Z"
+  },
+  {
+    "id": "1763895742824",
+    "name": "Google User 113",
+    "email": "user3443@gmail.com",
+    "password": "$2a$10$uc0bEVZW8o96EudMXaj3luqpcMsBoL.bpc5gfA0878eXAuyU.KuOy",
+    "role": "applicant",
+    "skills": [],
+    "appliedJobs": [],
+    "postedJobs": [],
+    "profileViews": 0,
+    "createdAt": "2025-11-23T11:02:22.824Z"
+  }
+]
